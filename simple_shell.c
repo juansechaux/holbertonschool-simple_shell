@@ -22,7 +22,7 @@ int main()
 
 	while (1)
 	{
-		printf("#cisfun$ ");
+		printf(" ");
 		line_read = getline(&line, &line_len, stdin);
 		if (line_read == -1)
 		{
