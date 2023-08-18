@@ -22,9 +22,12 @@ int main()
 
 	while (1)
 	{
-		/*printf("#cisfun$ ");*/
+		if (isatty(fileno(stdin)))
+		{
+			printf("#cisfun$ ");
+		}
+
 		line_read = getline(&line, &line_len, stdin);
-		printf("#cisfun$ ");
 		if (line_read == -1)
 		{
 			free(line);
@@ -54,7 +57,7 @@ int main()
 			args[i] = NULL; /* Termina la lista de argumentos */
 			/* Ejecuta el comando */
 			execve(args[0], args, NULL);
-			perror("Execve failed");
+			perror("./shell");
 			exit(1);
 		}
 		else
