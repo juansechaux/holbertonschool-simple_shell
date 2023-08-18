@@ -22,8 +22,9 @@ int main()
 
 	while (1)
 	{
-		printf(" ");
+		/*printf("#cisfun$ ");*/
 		line_read = getline(&line, &line_len, stdin);
+		printf("#cisfun$ ");
 		if (line_read == -1)
 		{
 			free(line);
