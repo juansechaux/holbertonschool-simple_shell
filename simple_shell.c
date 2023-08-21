@@ -34,11 +34,11 @@ int main()
 			exit(0);
 		}
 
-		/* Elimina el salto de línea final */
+		/* Elimina el salto de línea final
 		if (line_read > 0 && line[line_read - 1] == '\n')
 		{
 			line[line_read - 1] = '\0';
-		}
+		}*/
 		child_pid = fork();
 		if (child_pid == -1)
 		{
