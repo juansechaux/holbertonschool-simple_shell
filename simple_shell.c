@@ -34,11 +34,11 @@ int main()
 			exit(0);
 		}
 
-		/* Elimina el salto de línea final
+		/* Elimina el salto de linea final */
 		if (line_read > 0 && line[line_read - 1] == '\n')
 		{
 			line[line_read - 1] = '\0';
-		}*/
+		}
 		child_pid = fork();
 		if (child_pid == -1)
 		{
@@ -46,8 +46,8 @@ int main()
 			exit(1);
 		}
 		else if (child_pid == 0)
-		{ /* Código del proceso hijo */
-			/* Analiza la línea de comandos en argumentos */
+		{ /* Codigo del proceso hijo */
+			/* Analiza la linea de comandos en argumentos */
 			int i = 0;
 			args[i] = strtok(line, " ");
 			while (args[i] != NULL) {
