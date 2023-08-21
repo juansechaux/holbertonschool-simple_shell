@@ -19,6 +19,7 @@ int main()
 	int status;
 	ssize_t line_read;
 	pid_t child_pid;
+	int i;
 
 	while (1)
 	{
@@ -39,6 +40,15 @@ int main()
 		{
 			line[line_read - 1] = '\0';
 		}
+		/* val si es solo una linea de espacios */
+		for (i = 0; line[i] != '\0'; i++)
+		{
+			if (line[i] != ' ')
+				break;
+		}
+		if (line[i] == '\0') /*solo se cumple si es una cadena de espacios*/
+			continue;
+
 		child_pid = fork();
 		if (child_pid == -1)
 		{
