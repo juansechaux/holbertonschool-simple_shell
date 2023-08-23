@@ -98,7 +98,7 @@ int main()
 					args[0] = newpath;
 			}
 			/* Ejecuta el comando */
-			execve(args[0], args, NULL);
+			execve(args[0], args, environ);
 			perror("./shell");
 			exit(1);
 		}
