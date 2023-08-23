@@ -106,7 +106,7 @@ int main()
 			/* Ejecuta el comando */
 			execve(args[0], args, environ);
 			perror("./shell");
-			exit(1);
+			exit(127);
 		}
 		else
 		{
