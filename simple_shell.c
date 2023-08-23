@@ -26,6 +26,9 @@ int findpath(char *argument0, char *newpath)
 		}
 		token = strtok(NULL, ":");
 	}
+
+	if (access(argument0, X_OK) == 0)
+		return (0);
 	return (1);
 }
 
