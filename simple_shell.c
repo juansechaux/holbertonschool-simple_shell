@@ -97,16 +97,11 @@ int main()
 				char newpath[50];
 				if (findpath(args[0], newpath) == 0)
 					args[0] = newpath;
-				else
-				{
-					fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
-					exit(status);
-				}
 			}
 			/* Ejecuta el comando */
 			execve(args[0], args, environ);
 			perror("./shell");
-			exit(127);
+			exit(1);
 		}
 		else
 		{
