@@ -5,6 +5,30 @@
 #include <unistd.h>
 #include <string.h>
 
+
+/**
+ * findpath - find the path directory of the function
+ * 
+ * Return: 0 if it find, 1 if not.
+ */
+int findpath(char *argument0, char *newpath)
+{
+	char *path = getenv("PATH");
+	char *token = strtok(path, ":");
+
+	while (token != NULL)
+	{
+		snprintf(newpath, 50, "%s/%s", token, argument0);
+		if (access(newpath, X_OK) == 0)
+		{
+			return (0);
+		}
+		token = strtok(NULL, ":");
+	}
+	return (1);
+}
+
+
 /**
  * main - main function.
  *
@@ -65,6 +89,13 @@ int main()
 				args[i] = strtok(NULL, " ");
 			}
 			args[i] = NULL; /* Termina la lista de argumentos */
+			/*Valida si debe buscar la ruta en el PAHT*/
+			if (args[0] && !strchr(args[0], '/'))
+			{
+				char newpath[50];
+				if (findpath(args[0], newpath) == 0)
+					args[0] = newpath;
+			}
 			/* Ejecuta el comando */
 			execve(args[0], args, NULL);
 			perror("./shell");
