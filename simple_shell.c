@@ -85,7 +85,8 @@ int main()
 			/* Analiza la linea de comandos en argumentos */
 			int i = 0;
 			args[i] = strtok(line, " ");
-			while (args[i] != NULL) {
+			while (args[i] != NULL)
+			{
 				i++;
 				args[i] = strtok(NULL, " ");
 			}
@@ -98,7 +99,7 @@ int main()
 					args[0] = newpath;
 				else
 				{
-					perror("./hsh: ");
+					fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
 					exit(EXIT_FAILURE);
 				}
 			}
