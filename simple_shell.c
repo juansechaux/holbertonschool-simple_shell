@@ -26,9 +26,6 @@ int findpath(char *argument0, char *newpath)
 		}
 		token = strtok(NULL, ":");
 	}
-
-	if (access(argument0, X_OK) == 0)
-		return (0);
 	return (1);
 }
 
@@ -103,7 +100,7 @@ int main()
 				else
 				{
 					fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
-					exit(127);
+					exit(status);
 				}
 			}
 			/* Ejecuta el comando */
