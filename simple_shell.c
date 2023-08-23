@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <string.h>
 
+extern char **environ;
 
 /**
  * findpath - find the path directory of the function
