@@ -96,6 +96,11 @@ int main()
 				char newpath[50];
 				if (findpath(args[0], newpath) == 0)
 					args[0] = newpath;
+				else
+				{
+					perror("./hsh: ");
+					exit(EXIT_FAILURE);
+				}
 			}
 			/* Ejecuta el comando */
 			execve(args[0], args, environ);
