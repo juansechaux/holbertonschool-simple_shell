@@ -61,10 +61,8 @@ int main()
 		}
 
 		/* Elimina el salto de linea final */
-		if (line_read > 0 && line[line_read - 1] == '\n')
-		{
-			line[line_read - 1] = '\0';
-		}
+		line[strcspn(line, "\n")] = '\0';
+
 		/* val si es solo una linea de espacios */
 		for (i = 0; line[i] != '\0'; i++)
 		{
