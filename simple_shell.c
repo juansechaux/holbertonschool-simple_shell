@@ -87,7 +87,7 @@ void checkcommand(char *line)
 
 int main(void)
 {
-	char *line = NULL;
+	char *line = NULL, **env = environ;
 	size_t line_len = 0;
 	ssize_t line_read;
 	int i;
@@ -111,15 +111,9 @@ int main(void)
 		if (line[i] == '\0') /*solo se cumple si es una cadena de espacios*/
 			continue;
 		if (strcmp(line, "exit") == 0)
+			break; /*quite el "free(line); y exit(0)"*/
+		else if (strcmp(line, "env") == 0) /*imprimir el env*/
 		{
-			break;
-			/*free(line);
-			exit(0);*/
-		}
-		else if (strcmp(line, "env") == 0)
-		{
-			char **env = environ;
-
 			while (*env != NULL)
 			{
 				printf("%s\n", *env);
