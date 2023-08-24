@@ -95,22 +95,15 @@ int main(void)
 	while (1)
 	{
 		if (isatty(fileno(stdin)))
-		{
 			printf("#cisfun$ ");
-		}
-
 		line_read = getline(&line, &line_len, stdin);
 		if (line_read == -1)
 		{
 			free(line);
 			exit(0);
 		}
-
-		/* Elimina el salto de linea final */
-		line[strcspn(line, "\n")] = '\0';
-
-		/* val si es solo una linea de espacios */
-		for (i = 0; line[i] != '\0'; i++)
+		line[strcspn(line, "\n")] = '\0';/* Elimina el salto de linea final */
+		for (i = 0; line[i] != '\0'; i++)/* val si es solo una linea de espacios */
 		{
 			if (line[i] != ' ')
 				break;
@@ -119,10 +112,10 @@ int main(void)
 			continue;
 		if (strcmp(line, "exit") == 0)
 		{
-			free(line);
-			exit(0);
+			break;
+			/*free(line);
+			exit(0);*/
 		}
-
 		else if (strcmp(line, "env") == 0)
 		{
 			char **env = environ;
@@ -133,14 +126,9 @@ int main(void)
 				env++;
 			}
 		}
-		/*aqui va el else que llama a la funcion para ejecutar el comando*/
-		else
-		{
+		else /*llama a la funcion para ejecutar el comando*/
 			checkcommand(line);
-		}
-
 	}
 	free(line);
 	return (0);
 }
-
