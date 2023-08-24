@@ -29,6 +29,53 @@ int findpath(char *argument0, char *newpath)
 	return (1);
 }
 
+/**
+ * checkcommand - function to check the command that the user give.
+ *
+ * Return: void.
+ */
+
+void checkcommand(char *line)
+{
+	pid_t child_pid;
+	int i, status;
+	char *args[10];
+
+	child_pid = fork();
+	if (child_pid == -1)
+	{
+		perror("Fork failed");
+		exit(1);
+	}
+	else if (child_pid == 0)
+	{ /* Codigo del proceso hijo */
+		/* Analiza la linea de comandos en argumentos */
+		i = 0;
+		args[i] = strtok(line, " ");
+		while (args[i] != NULL)
+		{
+			i++;
+			args[i] = strtok(NULL, " ");
+		}
+		args[i] = NULL; /* Termina la lista de argumentos */
+		/*Valida si debe buscar la ruta en el PAHT*/
+		if (args[0] && !strchr(args[0], '/'))
+		{
+			char newpath[50];
+			if (findpath(args[0], newpath) == 0)
+				args[0] = newpath;
+		}
+		/* Ejecuta el comando */
+		execve(args[0], args, environ);
+		perror("./shell");
+		exit(1);
+	}
+	else
+	{
+		wait(&status);
+	}
+}
+
 
 /**
  * main - main function.
@@ -40,10 +87,7 @@ int main()
 {
 	char *line = NULL;
 	size_t line_len = 0;
-	char *args[10];
-	int status;
 	ssize_t line_read;
-	pid_t child_pid;
 	int i;
 
 	while (1)
@@ -71,41 +115,29 @@ int main()
 		}
 		if (line[i] == '\0') /*solo se cumple si es una cadena de espacios*/
 			continue;
-
-		child_pid = fork();
-		if (child_pid == -1)
+		if (strcmp(line, "exit") == 0)
 		{
-			perror("Fork failed");
-			exit(1);
+			free(line);
+			exit(0);
 		}
-		else if (child_pid == 0)
-		{ /* Codigo del proceso hijo */
-			/* Analiza la linea de comandos en argumentos */
-			int i = 0;
-			args[i] = strtok(line, " ");
-			while (args[i] != NULL)
+
+		else if (strcmp(line, "env") == 0)
+		{
+			char **env = environ;
+			while (*env != NULL)
 			{
-				i++;
-				args[i] = strtok(NULL, " ");
+				printf("%s\n", *env);
+				env++;
 			}
-			args[i] = NULL; /* Termina la lista de argumentos */
-			/*Valida si debe buscar la ruta en el PAHT*/
-			if (args[0] && !strchr(args[0], '/'))
-			{
-				char newpath[50];
-				if (findpath(args[0], newpath) == 0)
-					args[0] = newpath;
-			}
-			/* Ejecuta el comando */
-			execve(args[0], args, environ);
-			perror("./shell");
-			exit(1);
 		}
+		/*aqui va el else que llama a la funcion para ejecutar el comando*/
 		else
 		{
-			wait(&status);
+			checkcommand(line);
 		}
+
 	}
+	free(line);
 	return (0);
 }
 
