@@ -9,7 +9,8 @@ extern char **environ;
 
 /**
  * findpath - find the path directory of the function
- * 
+ * @argument0: argument to serch
+ * @newpath: buffer to the route of the path
  * Return: 0 if it find, 1 if not.
  */
 int findpath(char *argument0, char *newpath)
@@ -31,7 +32,7 @@ int findpath(char *argument0, char *newpath)
 
 /**
  * checkcommand - function to check the command that the user give.
- *
+ * @line: buffer that have the command
  * Return: void.
  */
 
@@ -62,6 +63,7 @@ void checkcommand(char *line)
 		if (args[0] && !strchr(args[0], '/'))
 		{
 			char newpath[50];
+
 			if (findpath(args[0], newpath) == 0)
 				args[0] = newpath;
 		}
@@ -83,7 +85,7 @@ void checkcommand(char *line)
  * Return: Always 0.
  */
 
-int main()
+int main(void)
 {
 	char *line = NULL;
 	size_t line_len = 0;
@@ -124,6 +126,7 @@ int main()
 		else if (strcmp(line, "env") == 0)
 		{
 			char **env = environ;
+
 			while (*env != NULL)
 			{
 				printf("%s\n", *env);
