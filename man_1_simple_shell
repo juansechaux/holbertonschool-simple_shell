@@ -1,0 +1,47 @@
+.TH SIMPLE_SHELL 1 "August 2023"
+.SH NAME
+simple_shell \- Simple Unix Shell Program
+.SH SYNOPSIS
+.B simple_shell
+[\fIcommand\fR]
+.SH DESCRIPTION
+\fBsimple_shell\fR is a basic Unix shell program implemented in C. It provides an interactive command-line interface where users can execute system commands, use built-in commands, and work with environment variables.
+.SH OPTIONS
+.TP
+\fBcommand\fR
+The command to be executed by the shell. Can be provided for non-interactive mode.
+.SH COMMANDS
+.TP
+\fBexit\fR
+Exit the shell.
+.TP
+\fBenv\fR
+Display the environment variables.
+.TP
+Any other system command
+Execute the given system command.
+.SH INTERACTIVE MODE
+When run without any arguments, \fBsimple_shell\fR enters interactive mode, where it prompts the user for input and executes entered commands.
+.SH NON-INTERACTIVE MODE
+When provided with a command as an argument, \fBsimple_shell\fR runs in non-interactive mode, executing the given command and then exiting.
+.SH EXAMPLES
+.TP
+Run in interactive mode:
+.sp
+\fI$ ./simple_shell\fR
+\fB#cisfun$ ls -l\fR
+\fB#cisfun$ exit\fR
+.TP
+Run in non-interactive mode:
+.sp
+\fI$ ./simple_shell "ls -l"\fR
+.SH NOTES
+.TP
+This is a basic shell intended for educational purposes.
+.TP
+Built and tested on Unix-like systems.
+.SH AUTHOR
+This shell was implemented by \fI[Juan Sebastian Varcercel Chaux and Gilberto Lozano Gutierrez]\fR.
+.SH LICENSE
+This project is licensed under the \fIMIT License\fR.
+
