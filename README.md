@@ -11,6 +11,18 @@ This is a simple Unix shell program implemented in C, which allows users to inte
 - Background processes: Executes commands in the background using the '&' symbol.
 - Handling whitespace: Handles leading/trailing whitespace and consecutive spaces in command input.
 
+## Code Components
+
+The code of the shell is divided into several key components:
+
+1. **Header File (main.h):** Contains necessary includes and declarations used throughout the program. It also includes the external declaration of the `environ` variable to access environment variables.
+
+2. **Command Path Search (`findpath` function):** This function takes an executable command as an argument and searches for its full path in the directories specified by the PATH environment variable.
+
+3. **Command Execution (`checkcommand` function):** This function is responsible for executing a given command. It forks a child process, parses the command-line input, searches for the command in the PATH (if needed), and executes it using the `execve` system call.
+
+4. **Main Function (`main` function):** The main function sets up the interactive loop of the shell. It displays a prompt, reads user input, processes commands (including built-in commands), and handles the execution of external commands.
+
 ## How to Use
 
 If there are no arguments and the shell standard input is connected to a terminal, the shell is considered an interactive shell.
