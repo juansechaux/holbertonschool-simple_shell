@@ -39,11 +39,11 @@ Interactive Mode is the standard way of interacting with the program where the u
 
     #cisfun$ ./simple_shell
     #cisfun$ /bin/pwd
-    Output: /home/vagrant/simple_shell
+    Output: /home/holbertonschool-simple_shell/simple_shell
 
     #cisfun$ ./simple_shell
     #cisfun$ pwd
-    Output: /home/vagrant/simple_shell
+    Output: /home/holbertonschool-simple_shell/simple_shell
 
 #### Other uses of interactive mode
 
