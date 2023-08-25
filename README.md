@@ -4,7 +4,7 @@ This is a simple Unix shell program implemented in C, which allows users to inte
 
 ## Flowchart
 
-
+![Flowchart](https://github.com/juansechaux/holbertonschool-simple_shell/blob/master/flowchartsSimple-Shell.png)
 
 ## Features
 
