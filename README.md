@@ -2,6 +2,10 @@
 
 This is a simple Unix shell program implemented in C, which allows users to interact with the system by executing commands. It provides a basic command-line interface that supports running commands, searching for executable files in the system's PATH, and displaying environment variables.
 
+## Flowchart
+
+
+
 ## Features
 
 - Command execution: Run various system commands by entering them in the shell.
